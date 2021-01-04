@@ -1,16 +1,22 @@
+let enabled = true;
+
 $("#vaporize").on("click", function () {
-    $("#file").trigger("click");
+    if (enabled) {
+        $("#errorMessage").css("visibility", "hidden");
+        $("#file").trigger("click");
+    }
 });
 
 $("#file").change(function () {
-    console.log($(this).val());
+    enabled = false;
+    const vaporize = $("#vaporize");
+    vaporize.html("Vaporizing...");
 
-    try {
-        $("#spinner").css("visibility", "visible");
-        $("#form").submit();
+    setTimeout(function () {
+        enabled = true;
+        vaporize.html("Vaporize!");
+    }, 8 * 1000);
 
-    } finally {
-        $("#spinner").css("visibility", "hidden");
-        $(this).val(null);
-    }
+    $("#form").submit();
+    $(this).val(null);
 });

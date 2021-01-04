@@ -35,15 +35,17 @@
         <h1 class="cover-heading" style="font-family: Alien-Encounters-Solid-Bold;font-size: 52px;">Vaporizer</h1>
         <p class="lead">Select any song and turn it into Vaporwave! All common formats are supported (max. 20MB).</p>
         <p class="lead">
-        <form id="form" method="post" enctype="multipart/form-data" action="/vaporize">
+        <form id="form" method="post" enctype="multipart/form-data">
             <a id="vaporize" class="btn btn-lg btn-secondary">Vaporize!</a>
             <input id="file" name="file" type="file" style="display: none;">
         </form>
 
         </p>
-        <div id="spinner" class="spinner-border text-primary" role="status" style="visibility: hidden;">
-            <span class="sr-only">Loading...</span>
-        </div>
+        <% if(typeof (errorMessage) !== "undefined") { %>
+            <div id="errorMessage" class="alert alert-danger mt-2" role="alert">
+                <%= errorMessage %>
+            </div>
+        <% } %>
     </main>
 
     <footer class="mastfoot mt-auto">
